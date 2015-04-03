@@ -81,7 +81,7 @@ public class WordCount {
          */
         Configuration conf = new Configuration(true);
         
-        
+        /*
         conf.set("fs.defaultFS", "hdfs://zjdx107:8020");
         conf.set("mapreduce.job.user.name", "clickwise");
         conf.set("mapreduce.framework.name", "yarn");
@@ -92,7 +92,7 @@ public class WordCount {
         conf.set("yarn.resourcemanager.resource-tracker.address", "${yarn.resourcemanager.hostname}:8031");
         conf.set("yarn.resourcemanager.scheduler.address", "${yarn.resourcemanager.hostname}:8030");
         conf.set("yarn.ipc.rpc.class", "org.apache.hadoop.yarn.ipc.HadoopYarnProtoRPC");
-        
+        */
         
         /*
         conf.set("fs.defaultFS", "hdfs://hndx104:8020");
@@ -107,10 +107,22 @@ public class WordCount {
         conf.set("yarn.ipc.rpc.class", "org.apache.hadoop.yarn.ipc.HadoopYarnProtoRPC");
         */
         
+        
+        conf.set("fs.defaultFS", "hdfs://adt82:8020");
+        conf.set("mapreduce.job.user.name", "clickwise");
+        conf.set("mapreduce.framework.name", "yarn");
+        conf.set("mapreduce.jobtracker.address", "local");
+        conf.set("yarn.resourcemanager.hostname", "adt86");
+        conf.set("yarn.resourcemanager.admin.address", "${yarn.resourcemanager.hostname}:8033");
+        conf.set("yarn.resourcemanager.address", "${yarn.resourcemanager.hostname}:8032");
+        conf.set("yarn.resourcemanager.resource-tracker.address", "${yarn.resourcemanager.hostname}:8031");
+        conf.set("yarn.resourcemanager.scheduler.address", "${yarn.resourcemanager.hostname}:8030");
+        
+        
         String[] otherArgs = new String[2];
-        otherArgs[0] = "hdfs://zjdx107:8020/user/clickwise/test_dir/t.txt";//计算原文件目录，需提前在里面存入文件
+        otherArgs[0] = "hdfs://adt82:8020/user/clickwise/test_dir/t.txt";//计算原文件目录，需提前在里面存入文件
         String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        otherArgs[1] = "hdfs://zjdx107:8020/user/clickwise/test_out" + time;//计算后的计算结果存储目录，每次程序执行的结果目录不能相同，所以添加时间标签
+        otherArgs[1] = "hdfs://adt82:8020/user/clickwise/test_out" + time;//计算后的计算结果存储目录，每次程序执行的结果目录不能相同，所以添加时间标签
  
         /*
          * setJobName()方法命名这个Job。对Job进行合理的命名有助于更快地找到Job，
